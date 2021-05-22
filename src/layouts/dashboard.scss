@@ -1,0 +1,10 @@
+.dashboard-layout {
+  background: #F3F5F7;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  aside {
+    background: white;
+  }
+}
