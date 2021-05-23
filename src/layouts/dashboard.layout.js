@@ -1,11 +1,15 @@
 import React from 'react'
 
+import SideNav from '../components/sidenav'
+
 import './dashboard.scss'
 
 const DashboardLayout = ({ children }) => {
   return (
     <div className='dashboard-layout'>
-      <aside>aside</aside>
+      <aside>
+        <SideNav />
+      </aside>
 
       <main>
         <div className='dashboard-content'>{children}</div>

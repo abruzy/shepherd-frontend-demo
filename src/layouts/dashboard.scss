@@ -6,5 +6,63 @@
 
   aside {
     background: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .brand {
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #E9E9EB;
+    }
+
+    .link {
+      margin: 0 0 24px;
+      padding: 1.14rem;
+      transition: all ease-in-out .3s;
+
+      &:hover {
+        background: rgba(234, 234, 234, 0.4);
+        border-radius: 18px;
+      }
+    }
+
+    .profile-container {
+      margin-bottom: 3rem;
+      padding: 24px 16px 0px;
+      border-top: 2px solid #E9E9EB;
+
+      .profile {
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+        border: 4px solid #2CE3A0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          // height: 2.5rem;
+          // width: 2.5rem;
+          object-fit: contain;
+          border-radius: 50%;
+          // max-width: 100%;
+        }
+      }
+    }
   }
+
+  main {
+    margin: 1.5rem 1.71rem 2rem;
+  }
+}
+
+.active {
+  background: #EAEAEA;
+  border-radius: 18px;
+}
+
+.spacer {
+  flex: 1;
 }
