@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SideNav from '../components/sidenav'
+import SideNav from '../components/sidenav/sidenav'
 
 import './dashboard.scss'
 
