@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import DashboardLayout from '../../../layouts/dashboard.layout'
 import Button from '../../../components/button/button'
 import Card from '../../../components/card/card'
+import PlusIcon from '../../../components/vectors/plus-icon'
 
 import './dash.scss'
 
 const Dashboard = () => {
+  const [isHovered, setIsHovered] = useState(false)
+
+  const handleHover = () => setIsHovered(prev => !prev)
+
   return (
     <DashboardLayout>
       <div className='dash-home'>
@@ -29,7 +34,17 @@ const Dashboard = () => {
                 <label htmlFor='checkbox'>Task 3</label>
               </div>
             </div>
-            <Button icon='/images/plus.svg' text='Add Checkbox' />
+            <Button
+              icon={
+                <PlusIcon
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleHover}
+                  fillOpacity={isHovered ? '1' : ''}
+                  className='plus'
+                />
+              }
+              text='Add Checkbox'
+            />
           </Card>
           <Card title='Personal Notes' icon='/images/file.svg'>
             <div className='wrapper'>
@@ -44,7 +59,17 @@ const Dashboard = () => {
               </div>
               <p className='warning'>Max 500 characters</p>
             </div>
-            <Button icon='/images/plus.svg' text='Check Hover State' />
+            <Button
+              icon={
+                <PlusIcon
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleHover}
+                  fillOpacity={isHovered ? '1' : ''}
+                  className='plus'
+                />
+              }
+              text='Check Hover State'
+            />
           </Card>
           <Card title='Your Location' icon='/images/file.svg'>
             <div className='wrapper'>
