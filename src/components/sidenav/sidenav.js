@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import HomeIcon from '../vectors/home-icon'
@@ -10,7 +10,11 @@ import './sidenav.scss'
 const activeLink = '1'
 
 const SideNav = () => {
+  const [isHovered, setIsHovered] = useState(false)
   const { pathname } = useLocation()
+
+  const handleHover = () => setIsHovered(true)
+  const handleMouseLeave = () => setIsHovered(false)
 
   const navlinks = [
     {
@@ -18,7 +22,15 @@ const SideNav = () => {
       path: DASHBOARD_ROUTE,
       icon: (
         <HomeIcon
-          fillOpacity={pathname === DASHBOARD_ROUTE ? activeLink : ''}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleMouseLeave}
+          fillOpacity={
+            pathname === DASHBOARD_ROUTE
+              ? activeLink
+              : isHovered
+              ? activeLink
+              : ''
+          }
         />
       ),
       alt: 'home'
@@ -27,7 +39,13 @@ const SideNav = () => {
       id: 2,
       path: NOTE_ROUTE,
       icon: (
-        <NotesIcon fillOpacity={pathname === NOTE_ROUTE ? activeLink : ''} />
+        <NotesIcon
+          onMouseEnter={handleHover}
+          onMouseLeave={handleMouseLeave}
+          fillOpacity={
+            pathname === NOTE_ROUTE ? activeLink : isHovered ? activeLink : ''
+          }
+        />
       ),
       alt: 'notes'
     }
@@ -38,7 +56,7 @@ const SideNav = () => {
       <NavLink to='/landing' className='brand'>
         <img src='/images/icon.svg' alt='logo' />
       </NavLink>
-      {navlinks.map(({ id, path, icon, alt }) => (
+      {navlinks.map(({ id, path, icon }) => (
         <NavLink key={id} to={path} className='link' activeClassName='active'>
           {icon}
         </NavLink>
