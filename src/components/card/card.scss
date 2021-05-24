@@ -17,6 +17,44 @@
       text-transform: capitalize;
     }
 
+    .tooltip {
+      visibility: hidden;
+      position: absolute;
+      left: 10.95rem;
+      top: 6rem;
+      width: 8.36rem;
+      height: 1.43rem;
+      background: #212429;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all ease-in-out 0.2s;
+
+      @media (max-width: 400px) {
+        left: 5.95rem;
+      }
+
+      &::after {
+        position: absolute;
+        content: '';
+        top: 103%;
+        height: 0;
+        border: 0.5rem solid transparent;
+        border-top-color: #212429;
+      }
+
+      p {
+        font-size: 0.57rem;
+        color: white;
+        font-weight: 400;
+      }
+    }
+
+    .help:hover + .tooltip {
+      visibility: visible;
+    }
+
     .spacer {
       flex: 1;
     }

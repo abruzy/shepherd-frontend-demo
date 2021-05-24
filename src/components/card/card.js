@@ -12,7 +12,15 @@ const Card = ({ children, title, icon }) => {
       <div className={`heading cta ${isExpanded ? 'rounded' : 'rounded-full'}`}>
         <img src={icon} alt='home' className='home-icon' />
         <h2>{title}</h2>
-        {title === 'agenda' ? <img src='/images/help.svg' alt='help' /> : null}
+        {title === 'agenda' ? (
+          <img src='/images/help.svg' alt='help' className='help' />
+        ) : null}
+
+        {title === 'agenda' ? (
+          <div className='tooltip'>
+            <p>Help me understand</p>
+          </div>
+        ) : null}
 
         <div className='spacer' />
         {title === 'agenda' ? (
