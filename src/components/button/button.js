@@ -5,7 +5,7 @@ import './button.scss'
 const Button = ({ icon, text }) => {
   return (
     <button>
-      <img src={icon} alt='plus' className='plus' />
+      {icon}
       {text}
     </button>
   )
