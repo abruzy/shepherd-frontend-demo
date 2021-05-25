@@ -4,13 +4,50 @@ import DashboardLayout from '../../../layouts/dashboard.layout'
 import Button from '../../../components/button/button'
 import Card from '../../../components/card/card'
 import PlusIcon from '../../../components/vectors/plus-icon'
+import { useGetData } from '../../../hooks/useGetData'
 
 import './dash.scss'
 
 const Dashboard = () => {
   const [isHovered, setIsHovered] = useState(false)
+  const [addCheckbox, setAddCheckbox] = useState([
+    {
+      id: 1,
+      label: 'Task 1',
+      value: false
+    },
+    {
+      id: 2,
+      label: 'Task 2',
+      value: false
+    },
+    {
+      id: 3,
+      label: 'Task 3',
+      value: true
+    }
+  ])
+  const [documents] = useGetData()
 
   const handleHover = () => setIsHovered(prev => !prev)
+
+  const handleAddCheckBox = () => {
+    setAddCheckbox(oldState => [
+      ...oldState,
+      {
+        id: oldState.length + 1,
+        label: `Task ${oldState.length + 1}`,
+        value: false
+      }
+    ])
+  }
+
+  const handleInputChange = item => {
+    console.log({ item })
+    const otherItems = addCheckbox.filter(check => item.id !== check.id)
+    otherItems.push({ ...item, value: !item.value })
+    setAddCheckbox(otherItems)
+  }
 
   return (
     <DashboardLayout>
@@ -19,22 +56,24 @@ const Dashboard = () => {
         <div className='card-container'>
           <Card title='agenda' icon='/images/home.svg'>
             <div className='wrapper'>
-              <div className='form-control'>
-                <input type='checkbox' name='checkbox' id='checkbox' />
-                <label htmlFor='checkbox'>Task 1</label>
-              </div>
-
-              <div className='form-control'>
-                <input type='checkbox' name='checkbox' id='checkbox' />
-                <label htmlFor='checkbox'>Task 2</label>
-              </div>
-
-              <div className='form-control'>
-                <input type='checkbox' name='checkbox' id='checkbox' />
-                <label htmlFor='checkbox'>Task 3</label>
-              </div>
+              {addCheckbox
+                .sort((a, b) => a.id - b.id)
+                .map(item => (
+                  <div key={item.id} className='form-control'>
+                    <input
+                      onChange={() => handleInputChange(item)}
+                      checked={item.value}
+                      type='checkbox'
+                      name='checkbox'
+                      id='checkbox'
+                    />
+                    <label htmlFor='checkbox'>{item.label}</label>
+                  </div>
+                ))}
             </div>
             <Button
+              className='btn'
+              onClick={handleAddCheckBox}
               icon={
                 <PlusIcon
                   onMouseEnter={handleHover}
@@ -50,12 +89,13 @@ const Dashboard = () => {
             <div className='wrapper'>
               <div className='content'>
                 <p>Instructions:</p>
-                <p>
-                  This is an input text field you need to create, make sure that
-                  the area for text is with correct padding. Limit text to 500
-                  characters.
-                </p>
-                <p>This text must be stored in a Firebase realtime database.</p>
+                {documents.length === 0 && <p>Loading...</p>}
+                {documents.map((documents, index) => (
+                  <div key={index}>
+                    <p>{documents.value.note}</p>
+                    <p>{documents.value.note2}</p>
+                  </div>
+                ))}
               </div>
               <p className='warning'>Max 500 characters</p>
             </div>
