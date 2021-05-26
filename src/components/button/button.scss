@@ -14,17 +14,16 @@ button {
   font-weight: 700;
   transition: ease-in-out all 0.2s;
 
+  svg {
+    margin-right: 1.28rem;
+  }
+
   &:hover {
     background: rgba(234, 234, 234, 0.4);
     color: #272727;
   }
 
-  .plus {
-    margin-right: 1.3rem;
-
-    &:hover {
-      fill-opacity: 1;
-      color: yellow;
-    }
+  &:hover path {
+    fill-opacity: 1;
   }
 }

@@ -17,11 +17,15 @@ nav {
   .link {
     margin: 0 0 24px;
     padding: 1.14rem;
-    transition: all ease-in-out 0.3s;
+    transition: ease-in-out all 0.2s;
 
     &:hover {
       background: rgba(234, 234, 234, 0.4);
       border-radius: 18px;
+    }
+
+    &:hover path {
+      fill-opacity: 1;
     }
   }
 
